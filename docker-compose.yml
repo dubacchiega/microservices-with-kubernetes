@@ -2,9 +2,9 @@ services:
   cambio-service:
     image: dubacchiega/cambio-service:latest
     restart: always
-#    build:
-#      context: ./cambio-service
-#      dockerfile: Dockerfile
+    build:
+      context: ./cambio-service
+      dockerfile: Dockerfile
     environment:
       TZ: America/Sao_Paulo
       SPRING_ZIPKIN_BASEURL: http://zipkin-server:9411
@@ -23,9 +23,9 @@ services:
   book-service:
     image: dubacchiega/book-service:latest
     restart: always
-#    build:
-#      context: ./book-service
-#      dockerfile: Dockerfile
+    build:
+      context: ./book-service
+      dockerfile: Dockerfile
     environment:
       TZ: America/Sao_Paulo
       SPRING_ZIPKIN_BASEURL: http://zipkin-server:9411
