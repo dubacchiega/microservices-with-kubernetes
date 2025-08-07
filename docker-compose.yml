@@ -1,0 +1,47 @@
+services:
+  cambio-service:
+    image: dubacchiega/cambio-service:latest
+    restart: always
+#    build:
+#      context: ./cambio-service
+#      dockerfile: Dockerfile
+    environment:
+      TZ: America/Sao_Paulo
+      SPRING_ZIPKIN_BASEURL: http://zipkin-server:9411
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://naming-server:8761/eureka
+      SPRING_DATASOURCE_URL: jdbc:mysql://10.30.30.12:3306/cambio_service?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: 1234
+      SPRING_FLYWAY_URL: jdbc:mysql://10.30.30.12:3306/cambio_service
+      SPRING_FLYWAY_USER: admin
+      SPRING_FLYWAY_PASSWORD: 1234
+    ports:
+      - 8000:8000
+    networks:
+      - dubacchiega-network
+
+  book-service:
+    image: dubacchiega/book-service:latest
+    restart: always
+#    build:
+#      context: ./book-service
+#      dockerfile: Dockerfile
+    environment:
+      TZ: America/Sao_Paulo
+      SPRING_ZIPKIN_BASEURL: http://zipkin-server:9411
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://naming-server:8761/eureka
+      SPRING_DATASOURCE_URL: jdbc:mysql://10.30.30.12:3306/book_service?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: 1234
+      SPRING_FLYWAY_URL: jdbc:mysql://10.30.30.12:3306/book_service
+      SPRING_FLYWAY_USER: admin
+      SPRING_FLYWAY_PASSWORD: 1234
+    ports:
+      - 8100:8100
+    networks:
+      - dubacchiega-network
+
+networks:
+  dubacchiega-network:
+    name: dubacchiega-network
+    driver: bridge

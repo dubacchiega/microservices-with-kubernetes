@@ -1,0 +1,55 @@
+server:
+  port: 8000
+
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+
+
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka}
+spring:
+  application:
+    name: cambio-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/cambio_service?useTimezone=true&serverTimezone=UTC}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:1234}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+  management:
+    tracing:
+      sampling:
+        probability: 1.0 # 100% das requisições serão rastreadas
+#  zipkin:
+#    base-url: ${SPRING_ZIPKIN_BASEURL:http://localhost:9411}
+
+  flyway:
+    url: ${SPRING_FLYWAY_URL:jdbc:mysql://localhost:3306/cambio_service}
+    schemas: cambio_service
+    user: ${SPRING_FLYWAY_USER:root}
+    password: ${SPRING_FLYWAY_PASSWORD:1234}
+
+springdoc:
+  show-actuator: true
+  api-docs:
+    path: /cambio-service/v3/api-docs
+  swagger-ui:
+    url: /cambio-service/v3/api-docs
+  override-server-url: true

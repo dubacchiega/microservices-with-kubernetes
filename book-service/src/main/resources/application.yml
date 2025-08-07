@@ -1,0 +1,72 @@
+server:
+  port: 8100
+
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka} # URL do Eureka para registrar este serviço. Passei a URL do Eureka como variável de ambiente, (vai vir pelo Docker) mas se não for passada, o padrão é http://localhost:8761/eureka
+resilience4j:
+  bulkhead:
+    instances:
+      default:
+        max-concurrent-calls: 10 # limite de chamadas concorrentes
+  rate-limiter:
+    instances:
+      default:
+        limit-for-period: 2
+        limit-refresh-period: 10s # 2 requisições a cada 10 segundos para cada instância do serviço
+  retry:
+    instances:
+      foo-bar:
+        max-attempts: 5
+        wait-duration: 1s
+        exponential-backoff: true # a cada tentativa de chamada, o tempo de espera aumenta exponencialmente
+spring:
+  application:
+    name: book-service
+  datasource:
+    driver-class-name:  com.mysql.cj.jdbc.Driver
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/book_service?useTimezone=true&serverTimezone=UTC}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:1234}
+  jackson:
+    default-property-inclusion: NON_NULL # nao serializar campos nulos
+    serialization:
+      fail-on-empty-beans: false
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  management:
+    tracing:
+      sampling:
+        probability: 1.0 # 100% das requisições serão rastreadas
+#  zipkin:
+#    base-url: ${SPRING_ZIPKIN_BASEURL:http://localhost:9411}
+  flyway:
+    url: ${SPRING_FLYWAY_URL:jdbc:mysql://localhost:3306/book_service}
+    schemas: book_service
+    user: ${SPRING_FLYWAY_USER:root}
+    password: ${SPRING_FLYWAY_PASSWORD:1234}
+
+springdoc:
+  show-actuator: true # inclui os endpoints do actuator na documentação OpenAPI
+  api-docs: # subchave para agrupar configurações específicas sobre como o próprio documento OpenAPI (o arquivo JSON bruto) é gerado e exposto
+    path: /book-service/v3/api-docs # caminho para acessar o OpenAPI do book-service. exponho minha documentação em book-service/v3/api-docs
+  swagger-ui:
+    url: /book-service/v3/api-docs
+  override-server-url: true
