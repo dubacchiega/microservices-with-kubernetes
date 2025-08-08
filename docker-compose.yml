@@ -10,10 +10,10 @@ services:
       SPRING_ZIPKIN_BASEURL: http://zipkin-server:9411
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://naming-server:8761/eureka
       SPRING_DATASOURCE_URL: jdbc:mysql://10.30.30.12:3306/cambio_service?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2
-      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: 1234
       SPRING_FLYWAY_URL: jdbc:mysql://10.30.30.12:3306/cambio_service
-      SPRING_FLYWAY_USER: admin
+      SPRING_FLYWAY_USER: root
       SPRING_FLYWAY_PASSWORD: 1234
     ports:
       - 8000:8000
@@ -31,10 +31,10 @@ services:
       SPRING_ZIPKIN_BASEURL: http://zipkin-server:9411
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://naming-server:8761/eureka
       SPRING_DATASOURCE_URL: jdbc:mysql://10.30.30.12:3306/book_service?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2
-      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: 1234
       SPRING_FLYWAY_URL: jdbc:mysql://10.30.30.12:3306/book_service
-      SPRING_FLYWAY_USER: admin
+      SPRING_FLYWAY_USER: root
       SPRING_FLYWAY_PASSWORD: 1234
     ports:
       - 8100:8100
