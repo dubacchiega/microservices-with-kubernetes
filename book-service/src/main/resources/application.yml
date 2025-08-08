@@ -38,7 +38,7 @@ spring:
   datasource:
     driver-class-name:  com.mysql.cj.jdbc.Driver
     url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/book_service?useTimezone=true&serverTimezone=UTC}
-    username: ${SPRING_DATASOURCE_USERNAME:root}
+    username: ${SPRING_DATASOURCE_USERNAME:admin}
     password: ${SPRING_DATASOURCE_PASSWORD:1234}
   jackson:
     default-property-inclusion: NON_NULL # nao serializar campos nulos
@@ -60,7 +60,7 @@ spring:
   flyway:
     url: ${SPRING_FLYWAY_URL:jdbc:mysql://localhost:3306/book_service}
     schemas: book_service
-    user: ${SPRING_FLYWAY_USER:root}
+    user: ${SPRING_FLYWAY_USER:admin}
     password: ${SPRING_FLYWAY_PASSWORD:1234}
 
 springdoc:
