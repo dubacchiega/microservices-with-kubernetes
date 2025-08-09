@@ -22,9 +22,12 @@ spring:
     name: cambio-service
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/cambio_service?useTimezone=true&serverTimezone=UTC}
-    username: ${SPRING_DATASOURCE_USERNAME:root}
-    password: ${SPRING_DATASOURCE_PASSWORD:1234}
+    url: jdbc:mysql://192.168.15.7:3306/cambio_service?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2
+    username: root
+    password: 1234
+    #url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/cambio_service?useTimezone=true&serverTimezone=UTC}
+    #username: ${SPRING_DATASOURCE_USERNAME:root}
+    #password: ${SPRING_DATASOURCE_PASSWORD:1234}
   jpa:
     hibernate:
       ddl-auto: update
@@ -41,10 +44,15 @@ spring:
 #    base-url: ${SPRING_ZIPKIN_BASEURL:http://localhost:9411}
 
   flyway:
-    url: ${SPRING_FLYWAY_URL:jdbc:mysql://localhost:3306/cambio_service}
+    #url: ${SPRING_FLYWAY_URL:jdbc:mysql://localhost:3306/cambio_service}
+    #schemas: cambio_service
+    #user: ${SPRING_FLYWAY_USER:root}
+    #password: ${SPRING_FLYWAY_PASSWORD:1234}
+
+    url: jdbc:mysql://192.168.15.7:3306/cambio_service
     schemas: cambio_service
-    user: ${SPRING_FLYWAY_USER:root}
-    password: ${SPRING_FLYWAY_PASSWORD:1234}
+    user: root
+    password: 1234
 
 springdoc:
   show-actuator: true
