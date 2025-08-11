@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 //@FeignClient(name = "cambio-service") // nome do serviço que será chamado (Sem Kubernetes)
-@FeignClient(name = "cambio-service", url = "${CAMBIO_SERVICE_SERVICE_HOST:http://host.docker.internal}:8000")
+//@FeignClient(name = "cambio-service", url = "${CAMBIO_SERVICE_SERVICE_HOST:http://host.docker.internal}:8000")
+@FeignClient(name = "cambio-service", url = "${CAMBIO_SERVICE_URI:http://host.docker.internal}:8000")
 public interface CambioProxy {
 
     @GetMapping(value = "/cambio-service/{amount}/{from}/{to}") // mapeia o endpoint do serviço de câmbio

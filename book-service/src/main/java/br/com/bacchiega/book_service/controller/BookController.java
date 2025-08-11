@@ -44,7 +44,7 @@ public class BookController {
         String port = informationService.retrieveServerPort();
         String host = informationService.retrieveInstanceInfo();
 
-        book.setEnvironment("BOOK HOST: " + host + " PORT: " + port + "VERSION: kube-v1" + " CAMBIO PORT: " + cambio.getEnvironment());
+        book.setEnvironment("BOOK HOST: " + host + " PORT: " + port + "VERSION: kube-v2" + " CAMBIO PORT: " + cambio.getEnvironment());
         book.setPrice(cambio.getConvertedValue()); // Seto o preço do livro com o valor convertido retornado pelo serviço de câmbio
         book.setCurrency(currency);
         return book;

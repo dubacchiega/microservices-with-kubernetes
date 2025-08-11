@@ -44,17 +44,17 @@ jobs:
     - name: Tag Docker Images
       run: |
         docker tag ${{secrets.DOCKER_USERNAME}}/cambio-service:latest ${{secrets.DOCKER_USERNAME}}/cambio-service:${{github.RUN_ID}}
-        docker tag ${{secrets.DOCKER_USERNAME}}/cambio-service:latest ${{secrets.DOCKER_USERNAME}}/cambio-service:kube-v1
+        docker tag ${{secrets.DOCKER_USERNAME}}/cambio-service:latest ${{secrets.DOCKER_USERNAME}}/cambio-service:kube-v2
         docker tag ${{secrets.DOCKER_USERNAME}}/book-service:latest ${{secrets.DOCKER_USERNAME}}/book-service:${{github.RUN_ID}}
-        docker tag ${{secrets.DOCKER_USERNAME}}/book-service:latest ${{secrets.DOCKER_USERNAME}}/book-service:kube-v1
+        docker tag ${{secrets.DOCKER_USERNAME}}/book-service:latest ${{secrets.DOCKER_USERNAME}}/book-service:kube-v2
         
         
 
     - name: Push Docker Images to Docker Hub
       run: |
         docker push ${{secrets.DOCKER_USERNAME}}/cambio-service:latest
-        docker push ${{secrets.DOCKER_USERNAME}}/cambio-service:kube-v1
+        docker push ${{secrets.DOCKER_USERNAME}}/cambio-service:kube-v2
         docker push ${{secrets.DOCKER_USERNAME}}/cambio-service:${{github.RUN_ID}}
         docker push ${{secrets.DOCKER_USERNAME}}/book-service:latest
-        docker push ${{secrets.DOCKER_USERNAME}}/book-service:kube-v1
+        docker push ${{secrets.DOCKER_USERNAME}}/book-service:kube-v2
         docker push ${{secrets.DOCKER_USERNAME}}/book-service:${{github.RUN_ID}}

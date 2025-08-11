@@ -51,7 +51,7 @@ public class CambioController {
 
         // setScale(2, RoundingMode.CEILING) arredonda o valor para cima (CEILING) com duas casas decimais
         cambio.setConvertedValue(convertedValue.setScale(2, RoundingMode.CEILING));
-        cambio.setEnvironment(host + " VERSION: kube-v1 PORT:" + port);
+        cambio.setEnvironment(host + " VERSION: kube-v2 PORT:" + port);
         return cambio;
     }
 }
